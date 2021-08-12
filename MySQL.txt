@@ -1,0 +1,40 @@
+CREATE DATABASE dangkihocphan;
+
+USE dangkihocphan;
+
+CREATE TABLE IF NOT EXISTS lophoc (
+malop int NOT NULL AUTO_INCREMENT,
+tenlop varchar(100)  NOT NULL,
+PRIMARY KEY (malop)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci,AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS sinhvien (
+id int(11) NOT NULL AUTO_INCREMENT,
+username varchar(15) NOT NULL,
+password varchar(50) NOT NULL,
+phone varchar(15) NOT NULL,
+email varchar(100) NOT NULL,
+malop int NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (malop) REFERENCES lophoc(malop)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS monhoc(
+mamonhoc int  NOT NULL ,
+tenmonhoc varchar(100)  NOT NULL,
+PRIMARY KEY(mamonhoc)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS dkhocphan(
+id int(11),
+mamonhoc int,
+PRIMARY KEY (id,mamonhoc),
+FOREIGN KEY (id) REFERENCES sinhvien(id),
+FOREIGN KEY (mamonhoc) REFERENCES monhoc(mamonhoc)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+Insert into lophoc(tenlop)
+values('Phan mem ma nguon mo');
+Insert into lophoc(tenlop)
+values('Cong nghe da phuong tien');
+
